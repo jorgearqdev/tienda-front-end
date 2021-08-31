@@ -1,0 +1,106 @@
+<form [formGroup]="eventoForm" (ngSubmit)="crear()">
+  <div class="row">
+    <div class="col-7 campo">
+      <h1>Crear evento</h1>
+    </div>
+    <div class="col-2 campo">
+      <button type="submit" class="btn btn-primary" id="guardarEvento">Guardar evento</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 campo">
+      <label>Nombre</label>
+      <input validar type="text" id="nombreEvento" name="nombreEvento" placeholder="Nombre" class="form-control"
+        formControlName="nombre">
+    </div>
+    <div class="col-sm-4 campo">
+      <label>Fecha Inicio</label>
+      <input validar type="datetime-local" id="fechaInicioEvento" name="fechaInicio" placeholder="Fecha Inicio"
+        class="form-control" formControlName="fechaInicio">
+    </div>
+    <div class="col-sm-4 campo">
+      <label>Fecha Fin</label>
+      <input validar type="datetime-local" id="fechaFinEvento" name="fechaFin" placeholder="Fecha Fin"
+        class="form-control" formControlName="fechaFin">
+    </div>
+  </div>
+
+</form>
+
+<h4>Referencias seleccionadas para descuento</h4>
+<div class="row justify-content-start">
+  <div class="col-sm-3 p-0 m-0">
+    <button id="agregarReferencia" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Agregar referencia
+    </button>
+  </div>
+</div>
+<div class="row table-responsive-md">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Referencia</th>
+        <th scope="col">Precio Antiguo</th>
+        <th scope="col">Precio Nuevo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let referencia of listadoReferencias">
+        <td>{{referencia.referencia}}</td>
+        <td>{{referencia.precioAntiguo}}</td>
+        <td>{{referencia.precioNuevo}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" [formGroup]="referenciaForm" (ngSubmit)="agregarReferencia()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar referencia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col campo">
+            <label>Referencia</label>
+            <input validar type="text" id="referencia" name="referencia" placeholder="Referencia" class="form-control"
+              formControlName="referencia" autocomplete="off">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col campo">
+            <label>Precio Antiguo</label>
+            <input validar type="number" id="precioAntiguoReferencia" name="precioAntiguo" placeholder="Precio Antiguo"
+              class="form-control" formControlName="precioAntiguo">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col campo">
+            <label>Precio Nuevo</label>
+            <input validar type="number" id="precioNuevoReferencia" name="precioNuevo" placeholder="Precio Nuevo"
+              class="form-control" formControlName="precioNuevo">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="guardarReferencia">Agregar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1061">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Advertencia</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="advertencia">
+      Ha ocurrido un error
+    </div>
+  </div>
+</div>

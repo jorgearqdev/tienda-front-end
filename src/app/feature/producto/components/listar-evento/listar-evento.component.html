@@ -1,0 +1,24 @@
+<div id="eventos">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Fecha Inicio</th>
+        <th scope="col">Fecha Fin</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let evento of listaEventos | async">
+        <td>{{evento.nombre}}</td>
+        <td>{{evento.fechaInicio}}</td>
+        <td>{{evento.fechaFin}}</td>
+        <td>{{evento.suspendido === 'S' ? 'Suspendido' : "Activo"}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="toggleEstado(evento)"><i class="fas fa-sliders-h"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
