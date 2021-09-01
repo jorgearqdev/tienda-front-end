@@ -32,7 +32,6 @@ export class CrearEventoComponent implements OnInit {
   public listadoReferencias: EventoReferenciaProducto[];
 
   ngOnInit() {
-    debugger;
     this.listadoReferencias = [];
     this.construirFormularioEvento();
     this.construirFormularioReferencia();
