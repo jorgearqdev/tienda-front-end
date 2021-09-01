@@ -8,6 +8,8 @@ describe('workspace-project Evento', () => {
     let navBar: NavbarPage;
     let evento: EventoPage;
 
+    const SLEEP_TIME = 1500;
+
     beforeEach(() => {
         page = new AppPage();
         navBar = new NavbarPage();
@@ -35,6 +37,7 @@ describe('workspace-project Evento', () => {
         evento.ingresarPrecioNuevo(PRECIO_NUEVO);
         
         evento.clickBotonGuardarReferencia();
+        browser.sleep(3000);
         
         evento.clickBotonGuardarEvento();
 
@@ -57,7 +60,7 @@ describe('workspace-project Evento', () => {
         evento.ingresarFechaFin(FECHA_FIN);
         evento.clickBotonAgregarReferencia();
 
-        browser.sleep(3000);
+        browser.sleep(SLEEP_TIME);
         evento.ingresarReferencia(REFERENCIA);
         evento.ingresarPrecioAntiguo(PRECIO_ANTIGUO);
         evento.ingresarPrecioNuevo(PRECIO_NUEVO);
@@ -82,7 +85,33 @@ describe('workspace-project Evento', () => {
         navBar.clickBotonListar();
 
         evento.clickBotonSuspender();
-        browser.sleep(2000)
+        browser.sleep(SLEEP_TIME)
         expect(evento.getEstadoEvento()).toEqual(SUSPENDIDO);
+    });
+
+    it('Deberia activar el evento', () => {
+        const SUSPENDIDO = "Activo";
+
+        page.navigateTo();
+        navBar.clickBotonListar();
+
+        evento.clickBotonSuspender();
+        browser.sleep(SLEEP_TIME);
+        expect(evento.getEstadoEvento()).toEqual(SUSPENDIDO);
+    });
+
+    
+    it('Deberia actualizar el evento', () => {
+        const NOMBRE_EVENTO = "Evento actualizado test";
+
+        page.navigateTo();
+        navBar.clickBotonListar();
+
+        evento.clickBotonActualizar();
+        browser.sleep(SLEEP_TIME);
+        evento.ingresarNombre(NOMBRE_EVENTO);
+
+        evento.clickBotonGuardarEvento();
+        expect(evento.obtenerValorNombre()).toEqual("");
     });
 });

@@ -21,6 +21,6 @@ import { DatePipe } from '@angular/common';
     SharedModule,
     CoreModule
   ],
-  providers: [EventoService, DatePipe]
+  providers: [EventoService, DatePipe, History]
 })
 export class ProductoModule { }

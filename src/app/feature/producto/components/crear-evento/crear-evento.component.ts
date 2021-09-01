@@ -25,26 +25,52 @@ export class CrearEventoComponent implements OnInit {
   eventoForm: FormGroup;
   referenciaForm: FormGroup;
 
+  evento: Evento;
 
   constructor(protected eventoService: EventoService, public datepipe: DatePipe) { }
 
   public listadoReferencias: EventoReferenciaProducto[];
 
   ngOnInit() {
+    debugger;
     this.listadoReferencias = [];
     this.construirFormularioEvento();
     this.construirFormularioReferencia();
+    
+    this.evento = window.history.state;
+
+    if (this.evento && this.evento.id) {
+      this.listadoReferencias = this.evento.eventoReferenciaProductos;
+      this.llenarCampoActualizar();
+    }
+
   }
 
-  crear() {
-    let evento: Evento = this.eventoForm.value;
-    evento.eventoReferenciaProductos = this.listadoReferencias;
-    evento.fechaInicio = this.datepipe.transform(evento.fechaInicio, 'yyyy-MM-dd hh:mm:ss');
-    evento.fechaFin = this.datepipe.transform(evento.fechaFin, 'yyyy-MM-dd hh:mm:ss');
+  llenarCampoActualizar() {
+    this.eventoForm.controls.nombre.setValue(this.evento.nombre);
+    this.eventoForm.controls.fechaInicio.setValue(this.datepipe.transform(this.evento.fechaInicio, 'yyyy-MM-ddThh:mm'));
+    this.eventoForm.controls.fechaFin.setValue(this.datepipe.transform(this.evento.fechaFin, 'yyyy-MM-ddThh:mm'));
+  }
 
-    this.eventoService.guardar(evento).pipe(
+  guardar() {
+    let eventoFormVal: Evento = this.eventoForm.value;
+    eventoFormVal.eventoReferenciaProductos = this.listadoReferencias;
+    eventoFormVal.fechaInicio = this.datepipe.transform(eventoFormVal.fechaInicio, 'yyyy-MM-dd hh:mm:ss');
+    eventoFormVal.fechaFin = this.datepipe.transform(eventoFormVal.fechaFin, 'yyyy-MM-dd hh:mm:ss');
+    let request;
+
+    if (this.evento && this.evento.id) {
+      eventoFormVal.id = this.evento.id;
+      request = this.eventoService.actualizar(eventoFormVal);
+    } else {
+      request = this.eventoService.guardar(eventoFormVal);
+    }    
+
+    request.pipe(
       map(() => {
+        this.listadoReferencias = [];
         this.eventoForm.reset();
+        this.evento = null;
       }),
       catchError((e: any) => {
         $("#advertencia").text(e.error.mensaje);

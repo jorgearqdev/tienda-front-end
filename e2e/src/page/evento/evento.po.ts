@@ -17,7 +17,9 @@ export class EventoPage {
 
     private modalReferencia = element(by.id('exampleModal'));
 
-    private botonSuspenderEvento = element(by.xpath('//*[@id="eventos"]/table/tbody/tr[1]/td[5]/button'));
+    private botonSuspenderEvento = element(by.xpath('//*[@id="eventos"]/table/tbody/tr[1]/td[5]/button[1]'));
+    private botonActualizarEvento = element(by.xpath('//*[@id="eventos"]/table/tbody/tr[1]/td[5]/button[2]'));
+ 
     private textoEstadoEvento = element(by.xpath('//*[@id="eventos"]/table/tbody/tr[1]/td[4]'));
 
     private advertenciaText = element(by.id('advertencia'));
@@ -25,6 +27,7 @@ export class EventoPage {
     private listaEventos = element.all(by.js(() => document.querySelector("#eventos > table > tbody > tr")));
 
     async ingresarNombre(nombre) {
+        await this.inputNombre.clear();
         await this.inputNombre.sendKeys(nombre);
     }
 
@@ -87,5 +90,9 @@ export class EventoPage {
     async getMensajeAdevertencia() {
         await browser.wait(ExpectedConditions.visibilityOf(this.advertenciaText), 1000, this.advertenciaText.locator());
         return await this.advertenciaText.getText();
+    }
+
+    async clickBotonActualizar() {
+        await this.botonActualizarEvento.click();
     }
 }

@@ -16,7 +16,8 @@
         <td>{{evento.fechaFin}}</td>
         <td>{{evento.suspendido === 'S' ? 'Suspendido' : "Activo"}}</td>
         <td>
-          <button class="btn btn-primary" (click)="toggleEstado(evento)"><i class="fas fa-sliders-h"></i></button>
+          <button class="btn btn-primary" (click)="toggleEstado(evento)"><i class="fas fa-sliders-h" data-toggle="tooltip" data-placement="bottom" title="Cambiar estado"></i></button>
+          <button class="btn btn-primary" (click)="irActualizar(evento)" data-toggle="tooltip" data-placement="bottom" title="Actualizar"><i class="fas fa-pen"></i></button>
         </td>
       </tr>
     </tbody>
