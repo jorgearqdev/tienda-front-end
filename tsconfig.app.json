@@ -11,9 +11,6 @@
       "@core-service/*": [
         "src/app/core/services/*"
       ],
-      "@home/*": [
-        "src/app/feature/home/*"
-      ],
       "@evento/*": [
         "src/app/feature/evento/*"
       ],

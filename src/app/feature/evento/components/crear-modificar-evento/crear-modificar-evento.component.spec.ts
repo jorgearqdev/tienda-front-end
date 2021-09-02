@@ -1,7 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 
-import { CrearEventoComponent } from './crear-evento.component';
+import { CrearModificarEventoComponent } from './crear-modificar-evento.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -14,13 +14,13 @@ import { Evento } from '@evento/shared/model/evento';
 declare var $: any;
 
 describe('CrearEventoComponent', () => {
-  let component: CrearEventoComponent;
-  let fixture: ComponentFixture<CrearEventoComponent>;
+  let component: CrearModificarEventoComponent;
+  let fixture: ComponentFixture<CrearModificarEventoComponent>;
   let eventoService: EventoService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [CrearEventoComponent,],
+      declarations: [CrearModificarEventoComponent,],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -35,7 +35,7 @@ describe('CrearEventoComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrearEventoComponent);
+    fixture = TestBed.createComponent(CrearModificarEventoComponent);
     component = fixture.componentInstance;
     eventoService = TestBed.inject(EventoService);
     fixture.detectChanges();

@@ -1,8 +1,8 @@
 import { by, element } from 'protractor';
 
 export class NavbarPage {
-    linkListar = element(by.xpath('/html/body/app-root/app-evento/app-navbar/nav/a[1]'));
-    linkCrear = element(by.xpath('/html/body/app-root/app-evento/app-navbar/nav/a[2]'));
+    linkListar = element(by.xpath('//*[@id="barraNavegacion"]/nav/a[1]'));
+    linkCrear = element(by.xpath('//*[@id="barraNavegacion"]/nav/a[2]'));
     barraNavegacion = element(by.id('barraNavegacion'));
 
     async clickBotonListar() {

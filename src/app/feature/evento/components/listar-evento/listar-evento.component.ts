@@ -34,7 +34,7 @@ export class ListarEventoComponent implements OnInit {
   }
 
   irActualizar(evento: Evento) {
-    this.router.navigateByUrl('/crear', { state: evento });
+    this.router.navigateByUrl('/crear-modificar', { state: evento });
   }
 
 }

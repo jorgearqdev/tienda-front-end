@@ -17,11 +17,11 @@ const ADVERTENCIA_PRECIO_NUEVO_MAYOR = "El precio nuevo no puede ser mayor o igu
 const ADVERTENCIA_REFERENCIA_EXISTENTE = "La referencia ya está en la lista"
 
 @Component({
-  selector: 'app-crear-evento',
-  templateUrl: './crear-evento.component.html',
-  styleUrls: ['./crear-evento.component.css']
+  selector: 'app-crear-modificar-evento',
+  templateUrl: './crear-modificar-evento.component.html',
+  styleUrls: ['./crear-modificar-evento.component.css']
 })
-export class CrearEventoComponent implements OnInit {
+export class CrearModificarEventoComponent implements OnInit {
   eventoForm: FormGroup;
   referenciaForm: FormGroup;
 

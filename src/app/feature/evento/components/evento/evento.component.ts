@@ -17,7 +17,7 @@ export class EventoComponent implements OnInit {
 
   public actions: MenuItem[] = [
     { url: './listar', nombre: 'Listar eventos' },
-    { url: './crear', nombre: 'Crear evento' }
+    { url: './crear-modificar', nombre: 'Crear evento' }
   ];
 
 

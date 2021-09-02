@@ -13,7 +13,6 @@ describe('workspace-project App', () => {
 
   it('Deberia mostrar la barra de navegacion', () => {
     page.navigateTo();
-    navigation.clickBotonCrear();
     expect(navigation.barraEsVisible()).toEqual(true);
   });
 
