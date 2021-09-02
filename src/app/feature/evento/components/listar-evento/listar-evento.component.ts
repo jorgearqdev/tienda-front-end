@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { EventoService } from '@producto/shared/service/evento.service';
-import { Evento } from '@producto/shared/model/evento';
+import { EventoService } from '@evento/shared/service/evento.service';
+import { Evento } from '@evento/shared/model/evento';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ActualizarEstadoEvento } from '@evento/shared/model/actualizarEstadoEvento';
 
 @Component({
   selector: 'app-listar-evento',
@@ -16,13 +17,11 @@ export class ListarEventoComponent implements OnInit {
 
   constructor(protected eventoService: EventoService, private router: Router) { }
 
-  toggleEstado(evento: Evento) {
-    let toggle = {
-      id: evento.id,
-      suspendido: evento.suspendido
-    }
+  actualizarEstado(evento: Evento) {
 
-    this.eventoService.toggleEstado(toggle).pipe(
+    let actualizarEstadoEvento = new ActualizarEstadoEvento(evento.id, evento.suspendido);
+
+    this.eventoService.actualizarEstado(actualizarEstadoEvento).pipe(
       map(() => { this.listaEventos = this.eventoService.consultar(); }),
       catchError(() => {
         return null;

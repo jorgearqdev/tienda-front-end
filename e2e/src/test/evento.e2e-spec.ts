@@ -23,6 +23,7 @@ describe('workspace-project Evento', () => {
         const PRECIO_NUEVO = 9000;
         const FECHA_INICIO = "2022-10-11T00:00";
         const FECHA_FIN = "2022-10-12T00:00";
+        const GUARDADO_EXITOSO = "Se ha almacenado el evento correctamente";
 
         page.navigateTo();
         navBar.clickBotonCrear();
@@ -41,7 +42,7 @@ describe('workspace-project Evento', () => {
         
         evento.clickBotonGuardarEvento();
 
-        expect(evento.obtenerValorNombre()).toEqual("");
+        expect(evento.obtenerMensajeAdevertencia()).toEqual(GUARDADO_EXITOSO);
     });
 
     it('Deberia mostrar error de fechas ya seleccionadas', () => {
@@ -68,7 +69,7 @@ describe('workspace-project Evento', () => {
         evento.clickBotonGuardarReferencia();
         
         evento.clickBotonGuardarEvento();
-        expect(evento.getMensajeAdevertencia()).toEqual(FECHAS_YA_SELECCIONADAS);
+        expect(evento.obtenerMensajeAdevertencia()).toEqual(FECHAS_YA_SELECCIONADAS);
     });
 
     it('Deberia listar eventos', () => {
@@ -86,7 +87,7 @@ describe('workspace-project Evento', () => {
 
         evento.clickBotonSuspender();
         browser.sleep(SLEEP_TIME)
-        expect(evento.getEstadoEvento()).toEqual(SUSPENDIDO);
+        expect(evento.obtenerEstadoEvento()).toEqual(SUSPENDIDO);
     });
 
     it('Deberia activar el evento', () => {
@@ -97,12 +98,13 @@ describe('workspace-project Evento', () => {
 
         evento.clickBotonSuspender();
         browser.sleep(SLEEP_TIME);
-        expect(evento.getEstadoEvento()).toEqual(SUSPENDIDO);
+        expect(evento.obtenerEstadoEvento()).toEqual(SUSPENDIDO);
     });
 
     
     it('Deberia actualizar el evento', () => {
         const NOMBRE_EVENTO = "Evento actualizado test";
+        const GUARDADO_EXITOSO = "Se ha alamcenado el evento correctamente";
 
         page.navigateTo();
         navBar.clickBotonListar();
@@ -112,6 +114,6 @@ describe('workspace-project Evento', () => {
         evento.ingresarNombre(NOMBRE_EVENTO);
 
         evento.clickBotonGuardarEvento();
-        expect(evento.obtenerValorNombre()).toEqual("");
+        expect(evento.obtenerMensajeAdevertencia()).toEqual(GUARDADO_EXITOSO);
     });
 });

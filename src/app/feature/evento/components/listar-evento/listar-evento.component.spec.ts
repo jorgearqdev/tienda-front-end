@@ -6,9 +6,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from 'src/app/core/services/http.service';
-import { Evento } from '@producto/shared/model/evento';
-import { EventoReferenciaProducto } from '@producto/shared/model/eventoReferenciaProducto';
-import { EventoService } from '@producto/shared/service/evento.service';
+import { Evento } from '@evento/shared/model/evento';
+import { EventoReferenciaProducto } from '@evento/shared/model/EventoReferenciaProducto';
+import { EventoService } from '@evento/shared/service/evento.service';
 
 describe('ListarEventoComponent', () => {
   let component: ListarEventoComponent;

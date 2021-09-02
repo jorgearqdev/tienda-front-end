@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { ProductoRoutingModule } from './producto-routing.module';
+import { EventoRoutingModule } from './evento-routing.module';
 import { ListarEventoComponent } from './components/listar-evento/listar-evento.component';
 import { CrearEventoComponent } from './components/crear-evento/crear-evento.component';
 import { EventoComponent } from './components/evento/evento.component';
@@ -17,10 +17,10 @@ import { DatePipe } from '@angular/common';
     EventoComponent
   ],
   imports: [
-    ProductoRoutingModule,
+    EventoRoutingModule,
     SharedModule,
     CoreModule
   ],
   providers: [EventoService, DatePipe, History]
 })
-export class ProductoModule { }
+export class EventoModule { }

@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '/evento', pathMatch: 'full' },
-  { path: 'evento', loadChildren: () => import('@producto/evento.module').then(mod => mod.ProductoModule) }
+  { path: 'evento', loadChildren: () => import('@evento/evento.module').then(mod => mod.EventoModule) }
   
 ];
 

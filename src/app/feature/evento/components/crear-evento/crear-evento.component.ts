@@ -1,9 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Evento } from '@producto/shared/model/evento.js';
-import { EventoReferenciaProducto } from '@producto/shared/model/eventoReferenciaProducto';
-import { EventoService } from '@producto/shared/service/evento.service';
+import { Evento } from '@evento/shared/model/evento.js';
+import { EventoReferenciaProducto } from '@evento/shared/model/EventoReferenciaProducto';
+import { EventoService } from '@evento/shared/service/evento.service';
 import { catchError, map } from 'rxjs/operators';
 import $ from '../../../../../assets/js/jquery-3.6.0.js'
 declare var $: any;
@@ -70,6 +70,8 @@ export class CrearEventoComponent implements OnInit {
         this.listadoReferencias = [];
         this.eventoForm.reset();
         this.evento = null;
+        $("#advertencia").text("Se ha almacenado el evento correctamente");
+        $('#liveToast').toast('show');
       }),
       catchError((e: any) => {
         $("#advertencia").text(e.error.mensaje);

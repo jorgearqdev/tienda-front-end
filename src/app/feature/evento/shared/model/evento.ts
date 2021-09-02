@@ -1,11 +1,11 @@
-import { EventoReferenciaProducto } from "./eventoReferenciaProducto";
+import { EventoReferenciaProducto } from "./EventoReferenciaProducto";
 
 export class Evento {
     id: number;
     nombre: string;
     fechaInicio: string | Date;
     fechaFin: string | Date;
-    suspendido: String;
+    suspendido: string;
     eventoReferenciaProductos: Array<EventoReferenciaProducto>
 
     constructor(id: number,

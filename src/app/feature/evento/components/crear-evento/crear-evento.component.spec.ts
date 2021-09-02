@@ -7,10 +7,10 @@ import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { EventoService } from '@producto/shared/service/evento.service';
+import { EventoService } from '@evento/shared/service/evento.service';
 import { CoreModule } from '@core/core.module';
-import { EventoReferenciaProducto } from '@producto/shared/model/eventoReferenciaProducto';
-import { Evento } from '@producto/shared/model/evento';
+import { EventoReferenciaProducto } from '@evento/shared/model/EventoReferenciaProducto';
+import { Evento } from '@evento/shared/model/evento';
 declare var $: any;
 
 describe('CrearEventoComponent', () => {

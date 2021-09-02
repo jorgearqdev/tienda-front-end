@@ -2,18 +2,18 @@ import { browser, by, element, ExpectedConditions, Key } from 'protractor';
 
 export class EventoPage {
 
-    private inputNombre = element(by.id('nombreEvento'));
-    private inputFechaInicio = element(by.id('fechaInicioEvento'));
-    private inputFechaFin = element(by.id('fechaFinEvento'));
+    private campoNombre = element(by.id('nombreEvento'));
+    private campoFechaInicio = element(by.id('fechaInicioEvento'));
+    private campoFechaFin = element(by.id('fechaFinEvento'));
 
-    private buttonAgregarReferencia = element(by.id('agregarReferencia'));
+    private botonAgregarReferencia = element(by.id('agregarReferencia'));
 
-    private inputReferencia = element(by.id('referencia'));
-    private inputPrecioAntiguo = element(by.id('precioAntiguoReferencia'));
-    private inputPrecioNuevo = element(by.id('precioNuevoReferencia'));
+    private campoReferencia = element(by.id('referencia'));
+    private campoPrecioAntiguo = element(by.id('precioAntiguoReferencia'));
+    private campoPrecioNuevo = element(by.id('precioNuevoReferencia'));
 
-    private buttonGuardarReferencia = element(by.id('guardarReferencia'));
-    private buttonGuardarEvento = element(by.id('guardarEvento'));
+    private botonGuardarReferencia = element(by.id('guardarReferencia'));
+    private botonGuardarEvento = element(by.id('guardarEvento'));
 
     private modalReferencia = element(by.id('exampleModal'));
 
@@ -22,53 +22,53 @@ export class EventoPage {
  
     private textoEstadoEvento = element(by.xpath('//*[@id="eventos"]/table/tbody/tr[1]/td[4]'));
 
-    private advertenciaText = element(by.id('advertencia'));
+    private textoAdvertencia = element(by.id('advertencia'));
 
     private listaEventos = element.all(by.js(() => document.querySelector("#eventos > table > tbody > tr")));
 
     async ingresarNombre(nombre) {
-        await this.inputNombre.clear();
-        await this.inputNombre.sendKeys(nombre);
+        await this.campoNombre.clear();
+        await this.campoNombre.sendKeys(nombre);
     }
 
     async ingresarFechaInicio(date) {
         await browser.executeScript(`document.getElementById('fechaInicioEvento').value='${date}'`);
-        await this.inputFechaInicio.click();
-        await this.inputFechaInicio.sendKeys(Key.ARROW_DOWN);
+        await this.campoFechaInicio.click();
+        await this.campoFechaInicio.sendKeys(Key.ARROW_DOWN);
     }
 
     async ingresarFechaFin(date) {
         await browser.executeScript(`document.getElementById('fechaFinEvento').value='${date}'`);
-        await this.inputFechaFin.click();
-        await this.inputFechaFin.sendKeys(Key.ARROW_DOWN);
+        await this.campoFechaFin.click();
+        await this.campoFechaFin.sendKeys(Key.ARROW_DOWN);
     }
 
     async clickBotonAgregarReferencia() {
-        await this.buttonAgregarReferencia.click();
+        await this.botonAgregarReferencia.click();
     }
 
     async ingresarReferencia(referencia) {
-        await this.inputReferencia.sendKeys(referencia);
+        await this.campoReferencia.sendKeys(referencia);
     }
 
     async ingresarPrecioAntiguo(precioAntiguo) {
-        await this.inputPrecioAntiguo.sendKeys(precioAntiguo);
+        await this.campoPrecioAntiguo.sendKeys(precioAntiguo);
     }
 
     async ingresarPrecioNuevo(precioNuevo) {
-        await this.inputPrecioNuevo.sendKeys(precioNuevo);
+        await this.campoPrecioNuevo.sendKeys(precioNuevo);
     }
 
     async clickBotonGuardarReferencia() {
-        await this.buttonGuardarReferencia.click();
+        await this.botonGuardarReferencia.click();
     }
 
     async clickBotonGuardarEvento() {
-        await this.buttonGuardarEvento.click();
+        await this.botonGuardarEvento.click();
     }
 
     async obtenerValorNombre() {
-        return this.inputNombre.getAttribute('value');
+        return this.campoNombre.getAttribute('value');
     }
 
     async contarEventos() {
@@ -83,13 +83,13 @@ export class EventoPage {
         await this.botonSuspenderEvento.click();
     }
 
-    async getEstadoEvento() {
+    async obtenerEstadoEvento() {
         return this.textoEstadoEvento.getText();
     }
 
-    async getMensajeAdevertencia() {
-        await browser.wait(ExpectedConditions.visibilityOf(this.advertenciaText), 1000, this.advertenciaText.locator());
-        return await this.advertenciaText.getText();
+    async obtenerMensajeAdevertencia() {
+        await browser.wait(ExpectedConditions.visibilityOf(this.textoAdvertencia), 1000, this.textoAdvertencia.locator());
+        return await this.textoAdvertencia.getText();
     }
 
     async clickBotonActualizar() {

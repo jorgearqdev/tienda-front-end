@@ -6,7 +6,8 @@ import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
 import { Evento } from '../model/evento';
 import { HttpResponse } from '@angular/common/http';
-import { EventoReferenciaProducto } from '../model/eventoReferenciaProducto';
+import { EventoReferenciaProducto } from '../model/EventoReferenciaProducto';
+import { ActualizarEstadoEvento } from '../model/actualizarEstadoEvento';
 
 describe('EventoService', () => {
   let httpMock: HttpTestingController;
@@ -52,8 +53,18 @@ describe('EventoService', () => {
   });
 
   it('deberia suspender el estado de un evento', () => {
-    const dummyEvento = {id: 1, suspendido: 'N'};
-    service.toggleEstado(dummyEvento).subscribe((respuesta) => {
+    const dummyEvento = new ActualizarEstadoEvento(1, 'N');
+    service.actualizarEstado(dummyEvento).subscribe((respuesta) => {
+      expect(respuesta).toEqual(true);
+    });
+    const req = httpMock.expectOne(`${apiEndpointEvento}/1`);
+    expect(req.request.method).toBe('DELETE');
+    req.event(new HttpResponse<boolean>({body: true}));
+  });
+
+  it('deberia actualizar el nombre de un evento', () => {
+    const dummyEvento = new ActualizarEstadoEvento(1, 'S');
+    service.actualizarEstado(dummyEvento).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
     const req = httpMock.expectOne(`${apiEndpointEvento}/1`);
